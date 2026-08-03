@@ -1,0 +1,27 @@
+name: Robot Navegador Boletín Oficial
+
+on:
+  workflow_dispatch: # Botón manual en Actions
+
+jobs:
+  navegar-y-extraer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Traer el código
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias del sistema y Playwright
+        run: |
+          pip install supabase playwright
+          playwright install --with-deps chromium
+
+      - name: Ejecutar Robot Navegador 🚀
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+        run: python navegador_historico.py
