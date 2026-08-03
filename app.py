@@ -27,8 +27,7 @@ except Exception:
 # Inicializar clientes
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 genai.configure(api_key=GEMINI_API_KEY)
-modelo_gemini = genai.GenerativeModel('gemini-1.5-pro')
-
+modelo_gemini = genai.GenerativeModel('gemini-1.5-flash')
 # --- TÍTULO PRINCIPAL ---
 st.title("⚖️ Radar Inteligente de Normativas y Resoluciones")
 st.markdown("Monitoreo en tiempo real del Boletín Oficial con análisis de impacto mediante Inteligencia Artificial.")
